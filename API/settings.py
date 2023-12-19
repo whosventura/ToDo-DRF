@@ -31,19 +31,25 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Defaults
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
-
-INSTALLED_APPS += [
+    
+    # 3rd Party Apps
     'rest_framework',
     'drf_yasg',
+    
+    # Apps
     'Task',
 ]
+
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%d/%m/%Y %H:%M:%S',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
