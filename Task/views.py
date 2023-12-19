@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions
 from .models import Task
 from .serializers import TaskSerializer
+from rest_framework import filters
 
 # Create your views here.
 class TaskList(generics.ListCreateAPIView):
@@ -11,6 +12,8 @@ class TaskList(generics.ListCreateAPIView):
         if not user.is_anonymous:
             return Task.objects.filter(usertask=user)
         return Task.objects.none()
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['title', 'description']
 
 class TaskDetailed(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -27,3 +30,5 @@ class TaskListAdm(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['title', 'description']
