@@ -41,6 +41,10 @@ Instale as dependências:
 Migre o banco de dados:
 
 ```bash
+  python manage.py makemigrations Task
+```
+
+```bash
   python manage.py migrate
 ```
 
