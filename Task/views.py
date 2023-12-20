@@ -1,9 +1,12 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from .models import Task
 from .serializers import TaskSerializer
-from rest_framework import filters
+from django.shortcuts import render
 
 # Create your views here.
+def index(request):
+    return render(request, template_name='index.html')
+
 class TaskList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TaskSerializer
